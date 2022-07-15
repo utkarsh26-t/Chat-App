@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/e59e83dd8a.js" crossorigin="anonymous"></script>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="jQuery.js"></script>
+</head>
+<body>
+    
+    <h1 class="display-5 fw-normal text-center"><i class="fa-brands fa-rocketchat"></i> JusChat</h1>
+    <section id="login" class="border mx-auto shadow p-2" style="width: 380px;">
+        <div class="d-grid gap-2">
+            <input type="text" class="form-control" id="username" placeholder="Username">
+            <button class="btn btn-dark" type="button" id="login-btn">Login</button>
+          </div>
+    </section>
+
+    <section id="chatbox" class="border mx-auto shadow p-2 rounded" style="width: 380px;">
+        <ul id="chat" class="overflow-auto ps-0" style="height: 300px">
+            
+        </ul>
+        <textarea class="form-control" rows="3" id="inp"></textarea>
+        <button class="btn btn-dark m-2 btn-sm" id="send-btn">Send</button>
+    </section>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
