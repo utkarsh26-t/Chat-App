@@ -23,12 +23,11 @@
     <script src="jQuery.js"></script>
 </head>
 <body>
-    
     <h1 class="display-5 fw-normal text-center"><i class="fa-brands fa-rocketchat"></i> JusChat</h1>
-    <section id="login" class="border mx-auto shadow p-2" style="width: 380px;">
+    <section id="login" class="border mx-auto shadow p-2 rounded" style="width: 380px;">
         <div class="d-grid gap-2">
             <input type="text" class="form-control" id="username" placeholder="Username">
-            <button class="btn btn-dark" type="button" id="login-btn">Login</button>
+            <button class="btn btn-dark" type="button" id="login-btn"><i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Login</button>
           </div>
     </section>
 
@@ -36,8 +35,9 @@
         <ul id="chat" class="overflow-auto ps-0" style="height: 300px">
             
         </ul>
+        <input type="text" class="form-control mb-1" id="reciever-name" placeholder="To : ">
         <textarea class="form-control" rows="3" id="inp"></textarea>
-        <button class="btn btn-dark m-2 btn-sm" id="send-btn">Send</button>
+        <button class="btn btn-dark m-2 btn-sm" id="send-btn"><i class="fa-solid fa-paper-plane me-2"></i>Send</button>
     </section>
 
     

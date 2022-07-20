@@ -17,15 +17,26 @@ io.on('connection', (socket) => {
 
     socket.on('send-msg', (data) => {
         
-        io.emit('received-msg', {
-            msg : data.msg,
-            username : users[socket.id],
-        })
+        if(data.dest){
 
-    })
+            io.to(data.dest).emit('received-msg', {
+                msg : data.msg,
+                username : users[socket.id]
+            })
+        }
+        else{
+            io.emit('received-msg', {
+                msg: data.msg,
+                username: users[socket.id]
+            })
+        }
+
+    });
 
     socket.on('login', (data) => {
         users[socket.id] = data.username;
+        //When user logs in, assigning room no to them
+        socket.join(data.username);
     })
 })
 
