@@ -42,3 +42,14 @@ ul {
 #users-online li{
     font-size: 0.9rem;
 }
+
+@media screen and (max-width: 420px){
+    #chat-wrapper{
+        width: 380px;
+    }
+}
+@media screen and (max-width: 380px){
+    #chat-wrapper, #login{
+        width: 340px;
+    }
+}
