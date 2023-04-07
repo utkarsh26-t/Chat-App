@@ -1,6 +1,6 @@
 const socket = io();
 
-$('#chatbox').hide();
+$('#chat-wrapper').hide();
 
 $('#send-btn').click(() => {
     const msgText = $('#inp').val();
@@ -33,8 +33,34 @@ $('#login-btn').click(() => {
         username : username
     })
 
+    socket.on('currentOnlineUsers', (loggedIn) => {
+        //It is logical to show only logged in users other than the user currently using that chat app
+        const showLoggedIn = loggedIn.filter((loggedUsername) => loggedUsername !== username);
+
+        $('#users-online').empty();
+
+        for (let username of showLoggedIn) {
+            $('#users-online').append(`<li>${username}</li>`)
+        }
+
+    })
+
     $('#login').hide();
-    $('#chatbox').show();
+    $('#chat-wrapper').show();
 
     $('#username').val("");
+});
+
+// Managing loggedIn state after someone logs out
+socket.on('currentOnlineUsers', (loggedIn) => {
+    //It is logical to show only logged in users other than the user currently using that chat app
+    const showLoggedIn = loggedIn.filter((loggedUsername) => loggedUsername !== $('#username').val());
+
+    $('#users-online').empty();
+
+    for (let username of showLoggedIn) {
+        $('#users-online').append(`<li>${username}</li>`)
+    }
+
 })
+

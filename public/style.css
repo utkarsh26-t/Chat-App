@@ -4,7 +4,14 @@ body{
 .fa-rocketchat{
     color: #32c4c0;
 }
-#chat {
+h6{
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: whitesmoke;
+    padding: 0.25rem;
+    border-radius: 2px;
+}
+ul {
     list-style: none;
 }
 #chat li:nth-of-type(2n) {
@@ -16,4 +23,22 @@ body{
 .form-control:focus{
     box-shadow: none;
     border: 1px solid #66666e;
+}
+#chat-wrapper{
+    width: 420px;
+    display: flex;
+    flex-direction: row;
+}
+#online{
+    flex-grow: 1;
+}
+#chatbox{
+    flex-grow: 2;
+}
+#users-online{
+    background: linear-gradient(90deg, #8de9d5, #32c4c0);
+    border-radius: 2px;
+}
+#users-online li{
+    font-size: 0.9rem;
 }

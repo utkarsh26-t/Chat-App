@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JusChat</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     
@@ -23,7 +24,10 @@
     <script src="jQuery.js"></script>
 </head>
 <body>
+    <!-- ChatAppName -->
     <h1 class="display-5 fw-normal text-center"><i class="fa-brands fa-rocketchat"></i> JusChat</h1>
+
+
     <section id="login" class="border mx-auto shadow p-2 rounded" style="width: 380px;">
         <div class="d-grid gap-2">
             <input type="text" class="form-control" id="username" placeholder="Username">
@@ -31,13 +35,21 @@
           </div>
     </section>
 
-    <section id="chatbox" class="border mx-auto shadow p-2 rounded" style="width: 380px;">
-        <ul id="chat" class="overflow-auto ps-0" style="height: 300px">
-            
-        </ul>
-        <input type="text" class="form-control mb-1" id="reciever-name" placeholder="To : ">
-        <textarea class="form-control" rows="3" id="inp"></textarea>
-        <button class="btn btn-dark m-2 btn-sm" id="send-btn"><i class="fa-solid fa-paper-plane me-2"></i>Send</button>
+    <section id="chat-wrapper" class="mx-auto shadow p-2 rounded">
+        <section id="online" class="px-2">
+            <h6><i class="fa-solid fa-circle fa-2xs" style="color: #18a00e;"></i> Online</h6>
+            <ul id="users-online" class="overflow-auto ps-2">
+
+            </ul>
+        </section>
+        <section id="chatbox" class="border mx-auto shadow p-2 rounded">
+            <ul id="chat" class="overflow-auto ps-0" style="height: 300px">
+        
+            </ul>
+            <input type="text" class="form-control mb-1" id="reciever-name" placeholder="To : ">
+            <textarea class="form-control" rows="3" id="inp"></textarea>
+            <button class="btn btn-dark m-2 btn-sm" id="send-btn"><i class="fa-solid fa-paper-plane me-2"></i>Send</button>
+        </section>
     </section>
 
     

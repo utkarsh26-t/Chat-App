@@ -11,6 +11,7 @@ const io = socketio(server);
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 const users = {};
+let loggedIn = [];
 
 io.on('connection', (socket) => {
     console.log(`Someone got connected with the id - ${socket.id}`);
@@ -18,7 +19,6 @@ io.on('connection', (socket) => {
     socket.on('send-msg', (data) => {
         
         if(data.dest){
-
             io.to(data.dest).emit('received-msg', {
                 msg : data.msg,
                 username : users[socket.id]
@@ -35,9 +35,22 @@ io.on('connection', (socket) => {
 
     socket.on('login', (data) => {
         users[socket.id] = data.username;
-        //When user logs in, assigning room no to them
+
+        loggedIn.push(data.username);
+        io.emit('currentOnlineUsers', loggedIn);
+
+        //When user logs in, assigning room no(username only in case of private chat) to them
         socket.join(data.username);
     })
+
+    //If user closes its tab then it should be set offline then
+    socket.on("disconnect", () => {
+
+        console.log(`User-${users[socket.id]} logged out with socket id-${socket.id}`)
+        
+        loggedIn = loggedIn.filter(username => username !== users[socket.id]);
+        io.emit('currentOnlineUsers', loggedIn);
+    });
 })
 
 
