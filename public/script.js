@@ -1,4 +1,9 @@
 const socket = io();
+//Saving username of user, currently using the chat app
+let username = null;
+
+//Incoming message sound
+let mySound = new Audio('./audio.mp3');
 
 $('#chat-wrapper').hide();
 
@@ -19,19 +24,29 @@ $('#send-btn').click(() => {
     $('#inp').val("")
 });
 
-
-
 socket.on('received-msg', (data) => {
-    $('#chat').append(`<li class="border p-2 rounded-pill mb-2"><span class="fw-bold">${data.username} : </span><span>${data.msg}</span></li>`)
+
+    let friendsMsg = (data.sender !== username);
+    
+    //setting alignment of msg-if friends msg then left else right
+    if(friendsMsg){
+        mySound.play();
+        $('#chat').append(`<li class="border p-2 mb-2 left"><span class="fw-bold">${data.sender} : </span><span>${data.msg}</span></li>`);
+    }
+    else{
+        $('#chat').append(`<li class="border p-2 mb-2 right"><span class="fw-bold">${data.sender} : </span><span>${data.msg}</span></li>`)
+    }
+    
     $("#chat").scrollTop($("#chat").outerHeight());
 });
 
 $('#login-btn').click(() => {
-    const username = $('#username').val();
+    username = $('#username').val();
     
     socket.emit('login', {
         username : username
     })
+
 
     socket.on('currentOnlineUsers', (loggedIn) => {
         //It is logical to show only logged in users other than the user currently using that chat app
@@ -39,8 +54,8 @@ $('#login-btn').click(() => {
 
         $('#users-online').empty();
 
-        for (let username of showLoggedIn) {
-            $('#users-online').append(`<li>${username}</li>`)
+        for (let userOnline of showLoggedIn) {
+            $('#users-online').append(`<li>${userOnline}</li>`)
         }
 
     })
@@ -52,14 +67,14 @@ $('#login-btn').click(() => {
 });
 
 // Managing loggedIn state after someone logs out
-socket.on('currentOnlineUsers', (loggedIn) => {
+socket.on('user-logged-out', (loggedIn) => {
     //It is logical to show only logged in users other than the user currently using that chat app
-    const showLoggedIn = loggedIn.filter((loggedUsername) => loggedUsername !== $('#username').val());
+    const showLoggedIn = loggedIn.filter((loggedUsername) => loggedUsername !== username);
 
     $('#users-online').empty();
 
-    for (let username of showLoggedIn) {
-        $('#users-online').append(`<li>${username}</li>`)
+    for (let userOnline of showLoggedIn) {
+        $('#users-online').append(`<li>${userOnline}</li>`)
     }
 
 })
