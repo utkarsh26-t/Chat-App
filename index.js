@@ -21,13 +21,13 @@ io.on('connection', (socket) => {
         if(data.dest){
             io.to(data.dest).emit('received-msg', {
                 msg : data.msg,
-                username : users[socket.id]
+                sender : users[socket.id]
             })
         }
         else{
             io.emit('received-msg', {
                 msg: data.msg,
-                username: users[socket.id]
+                sender: users[socket.id]
             })
         }
 
@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
         console.log(`User-${users[socket.id]} logged out with socket id-${socket.id}`)
         
         loggedIn = loggedIn.filter(username => username !== users[socket.id]);
-        io.emit('currentOnlineUsers', loggedIn);
+        io.emit('user-logged-out', loggedIn);
     });
 })
 
