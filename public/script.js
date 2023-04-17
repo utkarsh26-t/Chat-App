@@ -34,7 +34,7 @@ socket.on('received-msg', (data) => {
         $('#chat').append(`<li class="border p-2 mb-2 left"><span class="fw-bold">${data.sender} : </span><span>${data.msg}</span></li>`);
     }
     else{
-        $('#chat').append(`<li class="border p-2 mb-2 right"><span class="fw-bold">${data.sender} : </span><span>${data.msg}</span></li>`)
+        $('#chat').append(`<li class="border p-2 mb-2 right"><span class="fw-bold">You : </span><span>${data.msg}</span></li>`)
     }
     
     $("#chat").scrollTop($("#chat").outerHeight());

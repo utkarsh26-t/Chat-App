@@ -19,12 +19,14 @@ io.on('connection', (socket) => {
     socket.on('send-msg', (data) => {
         
         if(data.dest){
+            // to all clients in room (data.dest) except the sender
             io.to(data.dest).emit('received-msg', {
                 msg : data.msg,
                 sender : users[socket.id]
             })
         }
         else{
+            //broadcasting message to each client online
             io.emit('received-msg', {
                 msg: data.msg,
                 sender: users[socket.id]
